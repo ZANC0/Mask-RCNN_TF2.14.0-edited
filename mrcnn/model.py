@@ -43,7 +43,6 @@ tf.compat.v1.disable_eager_execution()
 #  Utility Functions
 ############################################################
 
-
 def log(text, array=None):
     """Prints a text message. And, optionally, if a Numpy array is provided it
     prints it's shape, min, and max values.
@@ -2167,7 +2166,7 @@ class MaskRCNN(object):
         metrics. Then calls the Keras compile() function.
         """
         # Optimizer object
-        optimizer = keras.optimizers.SGD(
+        optimizer = keras.optimizers.legacy.SGD(
             lr=learning_rate, momentum=momentum,
             clipnorm=self.config.GRADIENT_CLIP_NORM)
         # Add Losses
@@ -2318,7 +2317,7 @@ class MaskRCNN(object):
             defined in the Dataset class.
         """
         assert self.mode == "training", "Create model in training mode."
-
+        print("entered training ")
         # Pre-defined layer regular expressions
         layer_regex = {
             # all layers but the backbone
